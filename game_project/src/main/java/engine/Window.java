@@ -10,6 +10,7 @@ public class Window
     private long window;
     public int frames;
     public static long time;
+    public Input input;
 
     public Window(int width, int height, String title)
     {
@@ -23,6 +24,8 @@ public class Window
             System.err.println("ERROR: Couldn't initialize GLFW");
             return;
         }
+
+        input = new Input();
         // Settings of screen
         GLFW.glfwWindowHint(GLFW.GLFW_VISIBLE, GLFW.GLFW_FALSE);
         GLFW.glfwWindowHint(GLFW.GLFW_RESIZABLE, GLFW.GLFW_FALSE);
@@ -37,15 +40,15 @@ public class Window
         GLFW.glfwSetWindowPos(window, (videoMode.width() - width) / 2, (videoMode.height() - height) / 2);
         GLFW.glfwMakeContextCurrent(window);
 
+        GLFW.glfwSetKeyCallback(window, input.getKeyboardCallback());
+        GLFW.glfwSetCursorPosCallback(window, input.getMouseMoveCallback());
+        GLFW.glfwSetMouseButtonCallback(window, input.getMouseButtonsCallback());
+
         GLFW.glfwShowWindow(window);
 
         GLFW.glfwSwapInterval(1); // its giving gap between two interwals of swap which is frames
         
         time = System.currentTimeMillis();
-    }
-
-    public boolean closed(){
-        return GLFW.glfwWindowShouldClose(window);
     }
     
     public void update(){// Gets rid of everything from previous frame
@@ -58,8 +61,18 @@ public class Window
         }
     }
 
+    public boolean closed(){
+        return GLFW.glfwWindowShouldClose(window);
+    }
+
     public void swapBuffers(){// Renders necessary things for screen
         GLFW.glfwSwapBuffers(window);
+    }
+
+    public void destroy(){
+        input.destroy();
+        GLFW.glfwWindowShouldClose(window);
+        GLFW.glfwDestroyWindow(window);
     }
 }
 

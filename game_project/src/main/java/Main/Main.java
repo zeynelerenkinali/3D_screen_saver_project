@@ -19,26 +19,26 @@ public class Main implements Runnable
         public void init(){
             System.out.println("Initializing the Game!");
             window = new Window(WIDTH, HEIGHT, "Game");
+            window.setBackgroundColor(0.10f, 0.25f, 0.25f);
             window.create();
-    }
+        }
 
     public void run(){
         init();
-        while (!window.closed()) { 
+        while (!window.closed() && !Input.isKeyDown(GLFW.GLFW_KEY_ESCAPE)) { 
             update();
             render();
-            if(Input.isKeyDown(GLFW.GLFW_KEY_ESCAPE)) return;
+            if(Input.isKeyDown(GLFW.GLFW_KEY_F11)){ window.setFullScreen(!window.isFullScreen()); Input.setKey(GLFW.GLFW_KEY_F11, false);
+            }
         }
         window.destroy();
     }
     private void update(){
-        //System.out.println("Updating the Game!");
         window.update();
-        if(Input.isButtonDown(GLFW.GLFW_MOUSE_BUTTON_LEFT)) System.out.println("X: " + Input.getMouseX() + " | Y: " + Input.getMouseY());
+        if(Input.isButtonDown(GLFW.GLFW_MOUSE_BUTTON_LEFT)) System.out.println("X: " + Input.getScrollX() + " | Y: " + Input.getScrollY());
     }
     
     private void render(){
-        //System.out.println("Rendering the Game!");
         window.swapBuffers();
     }
     public static void main(String[] args) {

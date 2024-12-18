@@ -24,7 +24,7 @@ public class Main implements Runnable
 			new Vertex(new Vector3f( 0.5f,  0.5f, 0.0f))
         }, new int[] {
             0, 1, 2,
-            0, 3, 2
+            0, 3, 2, 
         });
 
         public void start(){

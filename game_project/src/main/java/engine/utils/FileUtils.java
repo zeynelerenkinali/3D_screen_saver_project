@@ -1,17 +1,18 @@
 package engine.utils;
 // All helper functions
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 
 
 public class FileUtils {
     public static String loadAsString(String path){
         StringBuilder result = new StringBuilder();
-        try(BufferedReader reader = new BufferedReader(new InputStreamReader(Class.class.getResourceAsStream(path)))) {
-            String line;
-            while((line = reader.readLine()) != null){
+        try {
+            List<String> lines = Files.readAllLines(Paths.get(path));
+            for (String line : lines) {
                 result.append(line).append("\n");
             }
         } catch (IOException e) {

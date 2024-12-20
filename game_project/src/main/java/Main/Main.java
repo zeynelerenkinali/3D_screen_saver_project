@@ -20,10 +20,10 @@ public class Main implements Runnable
     public final int WIDTH = 1280, HEIGHT = 720; // 1920 1010
     
     public Mesh mesh = new Mesh(new Vertex[] {
-		new Vertex(new Vector3f(-0.5f,  0.5f, 0.0f), new Vector3f(1.0f, 0.0f, 0.0f)),
-			new Vertex(new Vector3f(-0.5f, -0.5f, 0.0f), new Vector3f(0.0f, 1.0f, 0.0f)),
-			new Vertex(new Vector3f( 0.5f, -0.5f, 0.0f), new Vector3f(1.0f, 0.0f, 1.0f)),
-			new Vertex(new Vector3f( 0.5f,  0.5f, 0.0f), new Vector3f(1.0f, 0.5f, 0.0f))
+		    new Vertex(new Vector3f( -0.5f,0.5f, 0.0f), new Vector3f(0.0f, 0.5f, 0.0f)),
+			new Vertex(new Vector3f( -0.5f, -0.5f, 0.0f), new Vector3f(0.5f, 0.0f, 0.0f)),
+			new Vertex(new Vector3f(0.5f, -0.5f, 0.0f), new Vector3f(0.5f, 0.0f, 0.0f)),
+			new Vertex(new Vector3f(0.5f,0.5f, 0.0f), new Vector3f(0.0f, 0.0f, 1.0f))
         }, new int[] {
             0, 1, 2,
             0, 3, 2, 

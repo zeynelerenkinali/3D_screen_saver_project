@@ -7,7 +7,6 @@ out vec3 passColor;
 
 void main(){
     gl_Position = vec4(position, 1.0);
-    color = vec3(position.x, position.y - position.x, position.y);
-    passColor = vec3(color, 1.0f);
+    passColor = color;
 }
 

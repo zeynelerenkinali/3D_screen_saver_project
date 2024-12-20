@@ -12,15 +12,19 @@ import org.lwjgl.system.MemoryUtil;
 public class Mesh {
     private Vertex[] vertices;
     private int[] indices; // which order to draw each vertex
+    private Material material;
     private int vao, pbo, ibo, cbo, tbo; // vbo is basically place where our vertices are stored
 
 
-    public Mesh(Vertex[] vertices, int[] indices){
+    public Mesh(Vertex[] vertices, int[] indices, Material material){
         this.vertices = vertices;
         this.indices = indices;
+        this.material = material;
     }
 
     public void create(){
+        material.create();
+
         vao = GL30.glGenVertexArrays();
         GL30.glBindVertexArray(vao);
         // turn the vertices which OpenGL can Read.
@@ -81,6 +85,7 @@ public class Mesh {
         GL15.glDeleteBuffers(tbo);
 
         GL30.glDeleteVertexArrays(vao);
+        material.destroy();
     }
 
     public Vertex[] getVertices() {
@@ -109,6 +114,10 @@ public class Mesh {
 
     public int getTBO() {
         return tbo;
+    }
+
+    public Material getMaterial() {
+        return material;
     }
     
 }

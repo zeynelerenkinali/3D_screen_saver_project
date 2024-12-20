@@ -39,6 +39,10 @@ public class Material {
             width = widthBuffer.get();
             height = heightBuffer.get();
 
+            // Enable blending for transparency
+            GL11.glEnable(GL11.GL_BLEND);
+            GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+
             // Generate a new OpenGL texture
             textureID = GL11.glGenTextures();
             GL11.glBindTexture(GL11.GL_TEXTURE_2D, textureID);

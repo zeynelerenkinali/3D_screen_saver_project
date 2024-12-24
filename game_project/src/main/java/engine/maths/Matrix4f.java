@@ -31,9 +31,9 @@ public class Matrix4f {
         // 001z
         // 0001
         Matrix4f result = Matrix4f.identity();
-        result.set(0, 3, translate.getX());
-        result.set(1, 3, translate.getY());
-        result.set(2, 3, translate.getZ());
+        result.set(3, 0, translate.getX());
+        result.set(3, 1, translate.getY());
+        result.set(3, 2, translate.getZ());
         return result;
     }
 
@@ -65,7 +65,7 @@ public class Matrix4f {
         Matrix4f result = Matrix4f.identity();
         result.set(0, 0, scalar.getX());
         result.set(1, 1, scalar.getY());
-        result.set(3, 3, scalar.getZ());
+        result.set(2, 2, scalar.getZ());
         return result;
     }
 

@@ -32,10 +32,6 @@ public class GameObject {
         return scale;
     }
 
-    public void setScale(Vector3f scale) {
-        this.scale = scale;
-    }
-
     public Mesh getMesh() {
         return mesh;
     }

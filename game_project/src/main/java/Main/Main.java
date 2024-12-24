@@ -32,7 +32,7 @@ public class Main implements Runnable
             0, 3, 2, 
         }, new Material("game_project/src/main/resources/textures/dvd_video.png"));
 
-        public GameObject object = new GameObject(mesh, new Vector3f(0, 0, 0), new Vector3f(0, 0, 0), new Vector3f(1.0f, 1.0f, 1.0f));
+        public GameObject object = new GameObject(mesh, new Vector3f(0, 0, 0), new Vector3f(0, 0, 0), new Vector3f(0.25f, 0.25f, 1.0f));
 
         public void start(){
             game = new Thread(this, "game");
@@ -77,5 +77,13 @@ public class Main implements Runnable
     }
     public static void main(String[] args) {
         new Main().start();
+    }
+
+    public int getWIDTH() {
+        return WIDTH;
+    }
+
+    public int getHEIGHT() {
+        return HEIGHT;
     }
 }

@@ -11,6 +11,7 @@ import engine.io.Input;
 import engine.io.Window;
 import engine.maths.Vector2f;
 import engine.maths.Vector3f;
+import engine.objects.GameObject;
 
 
 public class Main implements Runnable
@@ -30,6 +31,8 @@ public class Main implements Runnable
             0, 1, 2,
             0, 3, 2, 
         }, new Material("game_project/src/main/resources/textures/dvd_video.png"));
+
+        public GameObject object = new GameObject(mesh, new Vector3f(0, 0, 0), new Vector3f(0, 0, 0), new Vector3f(1.0f, 1.0f, 1.0f));
 
         public void start(){
             game = new Thread(this, "game");
@@ -58,11 +61,12 @@ public class Main implements Runnable
     }
     private void update(){
         window.update();
+        object.update();
         if(Input.isButtonDown(GLFW.GLFW_MOUSE_BUTTON_LEFT)) System.out.println("X: " + Input.getScrollX() + " | Y: " + Input.getScrollY());
     }
     
     private void render(){
-        renderer.renderMesh(mesh);
+        renderer.renderMesh(object);
         window.swapBuffers();
     }
 

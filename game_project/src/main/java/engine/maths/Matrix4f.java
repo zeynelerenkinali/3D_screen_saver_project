@@ -57,6 +57,51 @@ public class Matrix4f {
         return result;
     }
 
+    public static Matrix4f scale(Vector3f scalar){
+    //    x000
+    //    0y00
+    //    00z0
+    //    0001     
+        Matrix4f result = Matrix4f.identity();
+        result.set(0, 0, scalar.getX());
+        result.set(1, 1, scalar.getY());
+        result.set(3, 3, scalar.getZ());
+        return result;
+    }
+
+    public static Matrix4f transform(Vector3f position, Vector3f rotation, Vector3f scale){
+        Matrix4f result = Matrix4f.identity();
+
+        Matrix4f translationMatrix = Matrix4f.translate(position);
+        Matrix4f rotXMAtrix = Matrix4f.rotate(rotation.getX(), new Vector3f(1, 0, 0));
+        Matrix4f rotYMAtrix = Matrix4f.rotate(rotation.getY(), new Vector3f(0, 1, 0));
+        Matrix4f rotZMAtrix = Matrix4f.rotate(rotation.getZ(), new Vector3f(0, 0, 1));
+
+        Matrix4f scaleMatrix = Matrix4f.scale(scale);
+
+        Matrix4f rotationMatrix = Matrix4f.multiply(rotXMAtrix, Matrix4f.multiply(rotYMAtrix, rotZMAtrix));
+
+        result = Matrix4f.multiply(translationMatrix, Matrix4f.multiply(rotationMatrix, scaleMatrix));
+
+        return result;
+    }
+
+    public static Matrix4f multiply(Matrix4f matrix, Matrix4f other){
+        Matrix4f result = Matrix4f.identity();
+
+        for(int i = 0; i  < SIZE; i++){
+            for(int j = 0; j  < SIZE; j++){
+                result.set(i, j,    matrix.get(i, 0) * other.get(0, j) +
+                                    matrix.get(i, 1) * other.get(1, j) +
+                                    matrix.get(i, 2) * other.get(2, j) +
+                                    matrix.get(i, 3) * other.get(3, j));
+            }
+        }
+        return result;
+    }
+
+
+
     public float get(int x, int y){
         return elements[y * SIZE + x]; // converts 2D numbers to 1D number.
     }

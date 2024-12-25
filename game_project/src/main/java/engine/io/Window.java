@@ -6,6 +6,7 @@ import org.lwjgl.glfw.GLFWWindowSizeCallback;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
 
+import engine.maths.Matrix4f;
 import engine.maths.Vector3f;
 
 public class Window 
@@ -21,12 +22,15 @@ public class Window
     private boolean isResized;
     private boolean isFullScreen;
     private int[] windowPosX = new int[1], windowPosY = new int[1];
+    private Matrix4f projection;
+    private float fov = 70.0f;
+    private float aspect = (float) width / (float) height;
 
-    public Window(int width, int height, String title)
-    {
+    public Window(int width, int height, String title){
         this.width = width;
         this.height = height;
         this.title = title;
+        projection = Matrix4f.projection(fov, aspect, 0.1f, 1000.0f);
     }
 
     public void create(){
@@ -149,5 +153,10 @@ public class Window
             GLFW.glfwSetWindowMonitor(window, 0, windowPosX[0], windowPosY[0], width, height, 0); // the logic on these one's "windowPosX[0], windowPosY[0]" instead of setting zero the posiitons of screen zero no matter what we set previous posiiotn.
         }
     }
+
+    public Matrix4f getProjectionMatrix() {
+        return projection;
+    }
+    
 }
 

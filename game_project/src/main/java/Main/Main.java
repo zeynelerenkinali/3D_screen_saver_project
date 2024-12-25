@@ -11,6 +11,7 @@ import engine.io.Input;
 import engine.io.Window;
 import engine.maths.Vector2f;
 import engine.maths.Vector3f;
+import engine.objects.Camera;
 import engine.objects.GameObject;
 
 
@@ -34,6 +35,8 @@ public class Main implements Runnable
 
         public GameObject object = new GameObject(mesh, new Vector3f(0, 0, 0), new Vector3f(0, 0, 0), new Vector3f(0.25f, 0.25f, 1.0f));
 
+        public Camera camera = new Camera(new Vector3f(0, 0, 1), new Vector3f(0, 0, 0));
+
         public void start(){
             game = new Thread(this, "game");
             game.start();
@@ -43,7 +46,7 @@ public class Main implements Runnable
             System.out.println("Initializing the Game!");
             window = new Window(WIDTH, HEIGHT, "Game");
             shader = new Shader("game_project/src/main/resources/shaders/mainVertex.glsl", "game_project/src/main/resources/shaders/mainFragment.glsl");
-            renderer = new Renderer(shader);
+            renderer = new Renderer(window ,shader);
             window.setBackgroundColor(0.10f, 0.25f, 0.25f);
             window.create();
             mesh.create();
@@ -61,12 +64,12 @@ public class Main implements Runnable
     }
     private void update(){
         window.update();
-        object.update();
+        //object.update();
         if(Input.isButtonDown(GLFW.GLFW_MOUSE_BUTTON_LEFT)) System.out.println("X: " + Input.getScrollX() + " | Y: " + Input.getScrollY());
     }
     
     private void render(){
-        renderer.renderMesh(object);
+        renderer.renderMesh(object, camera);
         window.swapBuffers();
     }
 
@@ -77,13 +80,5 @@ public class Main implements Runnable
     }
     public static void main(String[] args) {
         new Main().start();
-    }
-
-    public int getWIDTH() {
-        return WIDTH;
-    }
-
-    public int getHEIGHT() {
-        return HEIGHT;
     }
 }

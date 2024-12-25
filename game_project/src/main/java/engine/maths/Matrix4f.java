@@ -86,6 +86,38 @@ public class Matrix4f {
         return result;
     }
 
+    public static Matrix4f projection(float fov, float aspect, float near, float far){
+        Matrix4f result = Matrix4f.identity();
+
+        float tanFOV = (float) Math.tan(Math.toRadians(fov / 2));
+        float range = far - near;
+
+        result.set(0, 0, 1.0f / (aspect*tanFOV));
+        result.set(1, 1, 1.0f / tanFOV);
+        result.set(2, 2, -((far + near) / range));
+        result.set(2, 3, -1.0f);
+        result.set(3, 2, -((2 * far * near) / range));
+        result.set(3, 3, 0.0f);
+
+        return result;
+    }
+
+    public static Matrix4f view(Vector3f position, Vector3f rotation){
+        Matrix4f result = Matrix4f.identity();
+
+        Vector3f negative = new Vector3f(-position.getX(), -position.getY(), -position.getZ()); 
+        Matrix4f translationMatrix = Matrix4f.translate(negative);
+        Matrix4f rotXMAtrix = Matrix4f.rotate(rotation.getX(), new Vector3f(1, 0, 0));
+        Matrix4f rotYMAtrix = Matrix4f.rotate(rotation.getY(), new Vector3f(0, 1, 0));
+        Matrix4f rotZMAtrix = Matrix4f.rotate(rotation.getZ(), new Vector3f(0, 0, 1));
+
+        Matrix4f rotationMatrix = Matrix4f.multiply(rotZMAtrix, Matrix4f.multiply(rotYMAtrix, rotXMAtrix));
+
+        result = Matrix4f.multiply(translationMatrix, rotationMatrix);
+
+        return result;
+    }
+
     public static Matrix4f multiply(Matrix4f matrix, Matrix4f other){
         Matrix4f result = Matrix4f.identity();
 

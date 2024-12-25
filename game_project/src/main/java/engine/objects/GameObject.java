@@ -15,9 +15,10 @@ public class GameObject {
     }
 
     public void update(){ // At here we are able to update our object's position,rotation, mesh or scale as much as we can.
-        // position.add(0.01f, 0.0f, 0.0f);
+        
+        position.setZ(position.getZ() -0.05f);
         // scale.add(0.00f, 0.00f, 0.0f);
-        rotation.add(0.9f, 0.09f, 0.0f);
+        //rotation.add(0.9f, 0.09f, 0.0f);
     }
 
     public Vector3f getPosition() {

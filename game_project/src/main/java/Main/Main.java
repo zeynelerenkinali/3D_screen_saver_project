@@ -36,7 +36,7 @@ public class Main implements Runnable
         public GameObject object = new GameObject(mesh, new Vector3f(0, 0, 0), new Vector3f(0, 0, 0), new Vector3f(0.25f, 0.25f, 1.0f));
 
         public Camera camera = new Camera(new Vector3f(0, 0, 1), new Vector3f(0, 0, 0));
-
+        
         public void start(){
             game = new Thread(this, "game");
             game.start();

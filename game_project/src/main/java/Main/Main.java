@@ -85,6 +85,8 @@ public class Main implements Runnable
             23, 21, 22
     }, new Material("game_project/src/main/resources/textures/dvd_video.png"));
 
+        public GameObject[] objects = new GameObject[500];
+
         public GameObject object = new GameObject(mesh, new Vector3f(0, 0, 0), new Vector3f(0, 0, 0), new Vector3f(1.0f, 1.0f, 1.0f));
 
         public Camera camera = new Camera(new Vector3f(0, 0, 1), new Vector3f(0, 0, 0));
@@ -99,10 +101,15 @@ public class Main implements Runnable
             window = new Window(WIDTH, HEIGHT, "Game");
             shader = new Shader("game_project/src/main/resources/shaders/mainVertex.glsl", "game_project/src/main/resources/shaders/mainFragment.glsl");
             renderer = new Renderer(window ,shader);
-            window.setBackgroundColor(0.10f, 0.25f, 0.25f);
+            window.setBackgroundColor(0.196078f, 0.6f, 0.8f);
             window.create();
             mesh.create();
             shader.create();
+
+            objects[0] = object;
+            for(int i = 0; i < objects.length; i++){
+                objects[i] = new GameObject(mesh, new Vector3f((float) (Math.random() * 50 - 25), (float) (Math.random() * 50 - 25), (float) (Math.random() * 50 - 25)), new Vector3f(0, 0, 0), new Vector3f(1.0f, 1.0f, 1.0f));
+            }
         }
 
     public void run(){
@@ -117,11 +124,14 @@ public class Main implements Runnable
     }
     private void update(){
         window.update();
-        camera.update();
+        camera.update(object);
         //object.update();
     }
     
     private void render(){
+        for(int i = 0; i < objects.length; i++){
+            renderer.renderMesh(objects[i], camera);
+        }
         renderer.renderMesh(object, camera);
         window.swapBuffers();
     }

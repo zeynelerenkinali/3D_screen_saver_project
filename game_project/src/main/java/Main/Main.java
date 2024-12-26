@@ -64,8 +64,8 @@ public class Main implements Runnable
     }
     private void update(){
         window.update();
+        camera.update();
         //object.update();
-        if(Input.isButtonDown(GLFW.GLFW_MOUSE_BUTTON_LEFT)) System.out.println("X: " + Input.getScrollX() + " | Y: " + Input.getScrollY());
     }
     
     private void render(){

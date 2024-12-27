@@ -8,8 +8,9 @@ import engine.maths.Vector3f;
 public class Camera 
 {
     private Vector3f position, rotation;
-    private float moveSpeed = 0.04f, mouseSensitivity = 0.1f, distance = 2.0f, horizontalAngle = 0.0f, verticalAngle = 0.0f;
+    private float moveSpeed = 0.09f, mouseSensitivity = 0.1f, distance = 2.0f, horizontalAngle = 0.0f, verticalAngle = 0.0f;
     private double oldMouseX = 0, oldMouseY = 0, newMouseX, newMouseY;
+    public boolean cameraMode = false;
 
     public Camera(Vector3f position, Vector3f rotation) {
         this.position = position;
@@ -81,4 +82,15 @@ public class Camera
         return rotation;
     }
     
+    public boolean getCameraMode(){
+        return cameraMode;
+    }
+
+    public void setCameraMode(boolean cameraMode) {
+        this.cameraMode = cameraMode;
+    }
+
+    public void switchCamera() {
+        this.cameraMode = !this.cameraMode;
+    }
 }

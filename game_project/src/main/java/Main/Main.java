@@ -119,13 +119,15 @@ public class Main implements Runnable
             render();
             if(Input.isKeyDown(GLFW.GLFW_KEY_F11)){ window.setFullScreen(!window.isFullScreen()); Input.setKey(GLFW.GLFW_KEY_F11, false);}
             if(Input.isButtonDown(GLFW.GLFW_MOUSE_BUTTON_LEFT)) window.mouseState(true);
+            if(Input.isKeyDown(GLFW.GLFW_KEY_C)){camera.switchCamera(); Input.setKey(GLFW.GLFW_KEY_C, false);} 
         }
         close();
     }
     private void update(){
         window.update();
-        camera.update(object);
-        //object.update();
+        if(camera.getCameraMode()) camera.update(object);
+        else camera.update();
+        object.update();
     }
     
     private void render(){

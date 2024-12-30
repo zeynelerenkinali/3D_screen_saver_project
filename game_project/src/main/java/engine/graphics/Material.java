@@ -28,7 +28,7 @@ public class Material {
             // Flip vertically to match OpenGL's coordinates
             STBImage.stbi_set_flip_vertically_on_load(true);
 
-            // Load image
+            // Load image into byte buffer
             ByteBuffer image = STBImage.stbi_load(path, widthBuffer, heightBuffer, compBuffer, 4);
             if (image == null) {
                 System.err.println("Can't find texture at " + path + ": " + STBImage.stbi_failure_reason());
@@ -43,7 +43,8 @@ public class Material {
             GL11.glEnable(GL11.GL_BLEND);
             GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 
-            // Generate a new OpenGL texture
+            // Upload the texture into the GPU
+            // Generate a new OpenGL texture 
             textureID = GL11.glGenTextures();
             GL11.glBindTexture(GL11.GL_TEXTURE_2D, textureID);
 

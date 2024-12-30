@@ -8,6 +8,7 @@ import engine.graphics.Renderer;
 import engine.graphics.Shader;
 import engine.graphics.Vertex;
 import engine.io.Input;
+import engine.io.ModelLoader;
 import engine.io.Window;
 import engine.maths.Vector2f;
 import engine.maths.Vector3f;
@@ -25,40 +26,40 @@ public class Main implements Runnable
     
     public Mesh mesh = new Mesh(new Vertex[] {
         //Back face
-        new Vertex(new Vector3f(-0.5f,  0.5f, -0.5f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(0.0f, 0.0f)),
-        new Vertex(new Vector3f(-0.5f, -0.5f, -0.5f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(0.0f, 1.0f)),
-        new Vertex(new Vector3f( 0.5f, -0.5f, -0.5f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(1.0f, 1.0f)),
-        new Vertex(new Vector3f( 0.5f,  0.5f, -0.5f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(1.0f, 0.0f)),
+        new Vertex(new Vector3f(-0.5f,  0.5f, -0.5f),new Vector3f(1.0f,  0.5f, 0.1f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(0.0f, 0.0f)),
+        new Vertex(new Vector3f(-0.5f, -0.5f, -0.5f),new Vector3f(1.0f,  0.5f, 0.1f),new Vector3f(1.0f,  0.5f, 0.1f),  new Vector2f(0.0f, 1.0f)),
+        new Vertex(new Vector3f( 0.5f, -0.5f, -0.5f),new Vector3f(1.0f,  0.5f, 0.1f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(1.0f, 1.0f)),
+        new Vertex(new Vector3f( 0.5f,  0.5f, -0.5f),new Vector3f(1.0f,  0.5f, 0.1f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(1.0f, 0.0f)),
         
         //Front face
-        new Vertex(new Vector3f(-0.5f,  0.5f,  0.5f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(0.0f, 0.0f)),
-        new Vertex(new Vector3f(-0.5f, -0.5f,  0.5f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(0.0f, 1.0f)),
-        new Vertex(new Vector3f( 0.5f, -0.5f,  0.5f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(1.0f, 1.0f)),
-        new Vertex(new Vector3f( 0.5f,  0.5f,  0.5f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(1.0f, 0.0f)),
+        new Vertex(new Vector3f(-0.5f,  0.5f,  0.5f),new Vector3f(1.0f,  0.5f, 0.1f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(0.0f, 0.0f)),
+        new Vertex(new Vector3f(-0.5f, -0.5f,  0.5f),new Vector3f(1.0f,  0.5f, 0.1f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(0.0f, 1.0f)),
+        new Vertex(new Vector3f( 0.5f, -0.5f,  0.5f),new Vector3f(1.0f,  0.5f, 0.1f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(1.0f, 1.0f)),
+        new Vertex(new Vector3f( 0.5f,  0.5f,  0.5f),new Vector3f(1.0f,  0.5f, 0.1f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(1.0f, 0.0f)),
         
         //Right face
-        new Vertex(new Vector3f( 0.5f,  0.5f, -0.5f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(0.0f, 0.0f)),
-        new Vertex(new Vector3f( 0.5f, -0.5f, -0.5f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(0.0f, 1.0f)),
-        new Vertex(new Vector3f( 0.5f, -0.5f,  0.5f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(1.0f, 1.0f)),
-        new Vertex(new Vector3f( 0.5f,  0.5f,  0.5f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(1.0f, 0.0f)),
+        new Vertex(new Vector3f( 0.5f,  0.5f, -0.5f),new Vector3f(1.0f,  0.5f, 0.1f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(0.0f, 0.0f)),
+        new Vertex(new Vector3f( 0.5f, -0.5f, -0.5f),new Vector3f(1.0f,  0.5f, 0.1f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(0.0f, 1.0f)),
+        new Vertex(new Vector3f( 0.5f, -0.5f,  0.5f),new Vector3f(1.0f,  0.5f, 0.1f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(1.0f, 1.0f)),
+        new Vertex(new Vector3f( 0.5f,  0.5f,  0.5f),new Vector3f(1.0f,  0.5f, 0.1f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(1.0f, 0.0f)),
         
         //Left face
-        new Vertex(new Vector3f(-0.5f,  0.5f, -0.5f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(0.0f, 0.0f)),
-        new Vertex(new Vector3f(-0.5f, -0.5f, -0.5f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(0.0f, 1.0f)),
-        new Vertex(new Vector3f(-0.5f, -0.5f,  0.5f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(1.0f, 1.0f)),
-        new Vertex(new Vector3f(-0.5f,  0.5f,  0.5f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(1.0f, 0.0f)),
+        new Vertex(new Vector3f(-0.5f,  0.5f, -0.5f),new Vector3f(1.0f,  0.5f, 0.1f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(0.0f, 0.0f)),
+        new Vertex(new Vector3f(-0.5f, -0.5f, -0.5f),new Vector3f(1.0f,  0.5f, 0.1f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(0.0f, 1.0f)),
+        new Vertex(new Vector3f(-0.5f, -0.5f,  0.5f),new Vector3f(1.0f,  0.5f, 0.1f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(1.0f, 1.0f)),
+        new Vertex(new Vector3f(-0.5f,  0.5f,  0.5f),new Vector3f(1.0f,  0.5f, 0.1f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(1.0f, 0.0f)),
         
         //Top face
-        new Vertex(new Vector3f(-0.5f,  0.5f,  0.5f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(0.0f, 0.0f)),
-        new Vertex(new Vector3f(-0.5f,  0.5f, -0.5f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(0.0f, 1.0f)),
-        new Vertex(new Vector3f( 0.5f,  0.5f, -0.5f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(1.0f, 1.0f)),
-        new Vertex(new Vector3f( 0.5f,  0.5f,  0.5f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(1.0f, 0.0f)),
+        new Vertex(new Vector3f(-0.5f,  0.5f,  0.5f),new Vector3f(1.0f,  0.5f, 0.1f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(0.0f, 0.0f)),
+        new Vertex(new Vector3f(-0.5f,  0.5f, -0.5f),new Vector3f(1.0f,  0.5f, 0.1f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(0.0f, 1.0f)),
+        new Vertex(new Vector3f( 0.5f,  0.5f, -0.5f),new Vector3f(1.0f,  0.5f, 0.1f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(1.0f, 1.0f)),
+        new Vertex(new Vector3f( 0.5f,  0.5f,  0.5f),new Vector3f(1.0f,  0.5f, 0.1f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(1.0f, 0.0f)),
         
         //Bottom face
-        new Vertex(new Vector3f(-0.5f, -0.5f,  0.5f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(0.0f, 0.0f)),
-        new Vertex(new Vector3f(-0.5f, -0.5f, -0.5f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(0.0f, 1.0f)),
-        new Vertex(new Vector3f( 0.5f, -0.5f, -0.5f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(1.0f, 1.0f)),
-        new Vertex(new Vector3f( 0.5f, -0.5f,  0.5f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(1.0f, 0.0f)),
+        new Vertex(new Vector3f(-0.5f, -0.5f,  0.5f),new Vector3f(1.0f,  0.5f, 0.1f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(0.0f, 0.0f)),
+        new Vertex(new Vector3f(-0.5f, -0.5f, -0.5f),new Vector3f(1.0f,  0.5f, 0.1f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(0.0f, 1.0f)),
+        new Vertex(new Vector3f( 0.5f, -0.5f, -0.5f),new Vector3f(1.0f,  0.5f, 0.1f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(1.0f, 1.0f)),
+        new Vertex(new Vector3f( 0.5f, -0.5f,  0.5f),new Vector3f(1.0f,  0.5f, 0.1f),new Vector3f(1.0f,  0.5f, 0.1f), new Vector2f(1.0f, 0.0f)),
     }, new int[] {
             //Back face
             0, 1, 3,	
@@ -83,11 +84,15 @@ public class Main implements Runnable
             //Bottom face
             20, 21, 23,
             23, 21, 22
-    }, new Material("game_project/src/main/resources/textures/dvd_video.png"));
+    }, new Material("game_project/src/main/resources/textures/redstone_lamp.png"));
 
-        public GameObject[] objects = new GameObject[500];
+        public Mesh dvdMesh = ModelLoader.loadModel("game_project/src/main/resources/models/DVDVIDEO.obj", "game_project/src/main/resources/textures/green_color.png");
 
-        public GameObject object = new GameObject(mesh, new Vector3f(0, 0, 0), new Vector3f(0, 0, 0), new Vector3f(1.0f, 1.0f, 1.0f));
+        // public GameObject[] objects = new GameObject[500];
+        
+        public GameObject object = new GameObject(mesh, new Vector3f(0.0f, 0.0f, 0), new Vector3f(0, 0, 0), new Vector3f(1.0f, 1.0f, 1.0f));
+
+        public GameObject dvdObject = new GameObject(dvdMesh, new Vector3f(0, 0, 0), new Vector3f(0, 0, 0), new Vector3f(1.0f, 1.0f, 1.0f));
 
         public Camera camera = new Camera(new Vector3f(0, 0, 1), new Vector3f(0, 0, 0));
         
@@ -98,18 +103,22 @@ public class Main implements Runnable
     
         public void init(){
             System.out.println("Initializing the Game!");
-            window = new Window(WIDTH, HEIGHT, "Game");
+            window = new Window(WIDTH, HEIGHT, "OpenGL Project");
             shader = new Shader("game_project/src/main/resources/shaders/mainVertex.glsl", "game_project/src/main/resources/shaders/mainFragment.glsl");
             renderer = new Renderer(window ,shader);
-            window.setBackgroundColor(0.196078f, 0.6f, 0.8f);
+            //window.setBackgroundColor(0.196078f, 0.6f, 0.8f);
+            window.setBackgroundColor(0.0f, 0.0f, 0.0f);
             window.create();
             mesh.create();
+            dvdMesh.create();
             shader.create();
 
-            objects[0] = object;
-            for(int i = 0; i < objects.length; i++){
-                objects[i] = new GameObject(mesh, new Vector3f((float) (Math.random() * 50 - 25), (float) (Math.random() * 50 - 25), (float) (Math.random() * 50 - 25)), new Vector3f(0, 0, 0), new Vector3f(1.0f, 1.0f, 1.0f));
-            }
+            object = new GameObject(mesh, new Vector3f(3.0f, 3.0f, 0.0f), new Vector3f(0, 0, 0), new Vector3f(1.0f, 1.0f, 1.0f));
+            dvdObject = new GameObject(dvdMesh, new Vector3f(0.0f, 0.0f, 0.0f), new Vector3f(0, 0, 0), new Vector3f(1.0f, 1.0f, 1.0f));
+            // objects[0] = object;
+            // for(int i = 0; i < objects.length; i++){
+            //     objects[i] = new GameObject(mesh, new Vector3f((float) (Math.random() * 50 - 25), (float) (Math.random() * 50 - 25), (float) (Math.random() * 50 - 25)), new Vector3f(0, 0, 0), new Vector3f(1.0f, 1.0f, 1.0f));
+            // }
         }
 
     public void run(){
@@ -128,19 +137,22 @@ public class Main implements Runnable
         if(camera.getCameraMode()) camera.update(object);
         else camera.update();
         object.update();
+        dvdObject.updateDvd();
     }
     
     private void render(){
-        for(int i = 0; i < objects.length; i++){
-            renderer.renderMesh(objects[i], camera);
-        }
+        // for(int i = 0; i < objects.length; i++){
+        //     renderer.renderMesh(objects[i], camera);
+        // }
         renderer.renderMesh(object, camera);
+        renderer.renderMesh(dvdObject, camera);
         window.swapBuffers();
     }
 
     private void close(){
         window.destroy();
         mesh.destroy();
+        dvdMesh.destroy();
         shader.destroy();
     }
     public static void main(String[] args) {

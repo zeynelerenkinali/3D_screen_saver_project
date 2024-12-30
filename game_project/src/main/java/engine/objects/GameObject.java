@@ -12,20 +12,28 @@ public class GameObject {
     private float rotationSpeed, deltaTime = 0;
     double previousTime = 0, currentTime = 0;
     
-        public GameObject(Mesh mesh, Vector3f position, Vector3f rotation, Vector3f scale) {
-            this.mesh = mesh;
-            this.position = position;
-            this.rotation = rotation;
-            this.scale = scale;
-        }
-    
-        public void update(){ // At here we are able to update our object's position,rotation, mesh or scale as much as we can.
+    public GameObject(Mesh mesh, Vector3f position, Vector3f rotation, Vector3f scale) {
+        this.mesh = mesh;
+        this.position = position;
+        this.rotation = rotation;
+        this.scale = scale;
+    }
+
+    public void update(){ // At here we are able to update our object's position,rotation, mesh or scale as much as we can.
         currentTime = glfwGetTime();
         deltaTime = (float)(currentTime - previousTime);
-        if(!(currentTime >= 5))
-            position = add(new Vector3f(position.getX(), position.getY(), position.getZ()), new Vector3f((float) 0.009f,(float) 0.009f,(float) 0.009f));
+        if(!(currentTime >= 3))
+        {
+            position = add(new Vector3f(position.getX(), position.getY(), position.getZ()), new Vector3f((float) 0.005f,(float) 0.0f,(float) 0.005f));
+        }
         //scale = scale.add(new Vector3f(scale.getX(), scale.getY(), scale.getZ()), new Vector3f(0.9f, 0.09f, 0.0f));
-        rotation = add(new Vector3f(rotation.getX(), rotation.getY(), rotation.getZ()), new Vector3f(0.9f , 0.09f, 0.0f));
+        rotation = add(new Vector3f(rotation.getX(), rotation.getY(), rotation.getZ()), new Vector3f(0.0f , 0.0f, -1.0f));
+        previousTime = currentTime;
+    }
+    public void updateDvd(){ // At here we are able to update our object's position,rotation, mesh or scale as much as we can.
+        currentTime = glfwGetTime();
+        deltaTime = (float)(currentTime - previousTime);
+        rotation = add(new Vector3f(rotation.getX(), rotation.getY(), rotation.getZ()), new Vector3f(0.0f , 1.0f, 0.0f));
         previousTime = currentTime;
     }
 

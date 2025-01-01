@@ -13,8 +13,14 @@ import engine.maths.Vector2f;
 import engine.maths.Vector3f;
 
 public class ModelLoader {
-    public static Mesh loadModel(String filePath, String texturePath){
+
+    private static Vertex[] vertexListvar;
+    private static String texturePathvar;
+    private static int[] indicesListvar;
+    
+        public static Mesh loadModel(String filePath, String texturePath){
         // contains all of our 3d model data
+        texturePathvar = texturePath;
         AIScene scene = Assimp.aiImportFile(filePath, Assimp.aiProcess_JoinIdenticalVertices | Assimp.aiProcess_Triangulate);
 
         // check loaded
@@ -33,7 +39,7 @@ public class ModelLoader {
         // But first we need to create that object with mesh class; list of vertices, list of indices, and material
 
         Vertex[] vertexList = new Vertex[vertexCount];
-        
+
         for(int i = 0; i < vertexCount; i++){
             // We will get actual vector
             AIVector3D vertex = vertices.get(i);
@@ -56,6 +62,7 @@ public class ModelLoader {
             // now we can actually create our vertex and add it to our list 
             vertexList[i] = new Vertex(meshVertex, new Vector3f(0.0f, 0.0f, 0.0f) , meshNormal, meshTextureCoord);
         }
+        
         // we need indices
         int faceCount = mesh.mNumFaces();
         AIFace.Buffer indices = mesh.mFaces();
@@ -67,6 +74,15 @@ public class ModelLoader {
             indicesList[i*3 + 1] = face.mIndices().get(1); // I did 2, 3 because 1 belongs to color value.
             indicesList[i*3 + 2] = face.mIndices().get(2);
         }
+        indicesListvar = indicesList;
+        vertexListvar = vertexList;
+        texturePathvar = texturePath;
         return new Mesh(vertexList, indicesList, new Material(texturePath));
+    }
+
+    public static Mesh changeTexture(String texturePath){
+        if(vertexListvar != null && indicesListvar != null)
+            return new Mesh(vertexListvar, indicesListvar, new Material(texturePath));
+        return null;
     }
 }

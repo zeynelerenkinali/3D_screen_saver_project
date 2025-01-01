@@ -73,6 +73,9 @@ public class Camera
         oldMouseX = newMouseX;
         oldMouseY = newMouseY;
     }
+    public void updateStatic(){
+
+    }
 
     public Vector3f getPosition() {
         return position;

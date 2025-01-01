@@ -60,7 +60,7 @@ public class Window
 
         GLFW.glfwShowWindow(window);
 
-        GLFW.glfwSwapInterval(2); // its giving gap between two interwals of swap which is frames
+        GLFW.glfwSwapInterval(1); // its giving gap between two interwals of swap which is frames
         
         time = System.currentTimeMillis();
     }
@@ -160,6 +160,10 @@ public class Window
 
     public Matrix4f getProjectionMatrix() {
         return projection;
+    }
+
+    public float getAspect(){
+        return aspect;
     }
     
 }

@@ -28,14 +28,12 @@ public class Main implements Runnable
     public Mesh[] mesh = {
         ModelLoader.loadModel("game_project/src/main/resources/models/DVDVIDEO.obj", "game_project/src/main/resources/textures/green_color.png"),
         ModelLoader.loadModel("game_project/src/main/resources/models/Cube.obj", "game_project/src/main/resources/textures/redstone_lamp.png"),
-        ModelLoader.loadModel("game_project/src/main/resources/models/Batman.obj", "game_project/src/main/resources/textures/redstone_lamp.png"),
         ModelLoader.loadModel("game_project/src/main/resources/models/ETU.obj", "game_project/src/main/resources/textures/redstone_lamp.png")};
 
     public GameObject[] objects = {
         new GameObject(mesh[0], renderers[0], new Vector3f(0.0f, 0.0f, -5.0f), new Vector3f(0.0f, 0.0f, 0.0f), new Vector3f(1.0f, 1.0f, 1.0f), window),
         new GameObject(mesh[1], renderers[1], new Vector3f(0.0f, 0.0f, -5.0f), new Vector3f(0.0f, 0.0f, 0.0f), new Vector3f(1.0f, 1.0f, 1.0f), window),
-        new GameObject(mesh[2], renderers[2], new Vector3f(0.0f, 0.0f, -5.0f), new Vector3f(0.0f, 0.0f, 0.0f), new Vector3f(1.0f, 1.0f, 1.0f), window),
-        new GameObject(mesh[3], renderers[3], new Vector3f(0.0f, 0.0f, -5.0f), new Vector3f(0.0f, 0.0f, 0.0f), new Vector3f(1.0f, 1.0f, 1.0f), window)};
+        new GameObject(mesh[2], renderers[2], new Vector3f(0.0f, 0.0f, -5.0f), new Vector3f(0.0f, 0.0f, 0.0f), new Vector3f(1.0f, 1.0f, 1.0f), window)};
 
     public Camera camera = new Camera(camPosition, camRotation);
         
@@ -74,9 +72,9 @@ public class Main implements Runnable
             if(Input.isKeyDown(GLFW.GLFW_KEY_C)){camera.switchCamera(); Input.setKey(GLFW.GLFW_KEY_C, false);}
             if(Input.isKeyDown(GLFW.GLFW_KEY_T)){
                 object_index += 1;
-                object_index %= 4;
+                object_index %= 3;
                 renderer_index += 1;
-                renderer_index %= 4;
+                renderer_index %= 3;
                 Input.setKey(GLFW.GLFW_KEY_T, false);
             }
             if(Input.isKeyDown(GLFW.GLFW_KEY_M)){
@@ -99,16 +97,11 @@ public class Main implements Runnable
     }
     
     private void render(){
-        // for(int i = 0; i < objects.length; i++){
-        //     renderer.renderMesh(objects[i], camera);
-        // }
-        //renderer.renderMesh(object, camera);
         if(multi_object)
         {
             renderers[0].renderMesh(objects[0], camera);
             renderers[1].renderMesh(objects[1], camera);
             renderers[2].renderMesh(objects[2], camera);
-            renderers[3].renderMesh(objects[3], camera);
         }
         else{
             renderers[renderer_index].renderMesh(objects[object_index], camera);

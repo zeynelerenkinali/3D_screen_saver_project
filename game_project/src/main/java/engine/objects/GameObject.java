@@ -11,7 +11,7 @@ import static engine.maths.Vector3f.add;
 public class GameObject {
     private Vector3f position, rotation, scale, color;
     private float x = 0.0f, y = 0.0f;  // Initial position of the logo
-    private float dx = 0.02f, dy = 0.02f;  // Velocity of the logo in X and Y direction
+    private float dx = 0.023f, dy = 0.023f;  // Velocity of the logo in X and Y direction
     private float currentAngle = 0f;
     public Vector3f colors[] =  {new Vector3f(0.0f, 1.0f, 0.0f), new Vector3f(1.0f, 0.0f, 0.0f) , new Vector3f(0.0f, 0.0f, 1.0f)};
     public int color_index = 0;
@@ -161,7 +161,7 @@ public class GameObject {
         // Convert angle to radians
         float angle = (float) Math.toRadians(angleDegrees);
         // Speed
-        float speed = 0.038f;
+        float speed = 0.034f;
         // Update the direction based on the new angle
         dx = (float) Math.cos(angle) * speed;  
         dy = (float) Math.sin(angle) * speed;

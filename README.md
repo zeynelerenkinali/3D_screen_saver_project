@@ -1,6 +1,7 @@
 # Computer Graphics Project - Modern OpenGL with LWJGL
 
 This project demonstrates the development of a 3D graphics application using **Modern OpenGL** and **LWJGL** (Lightweight Java Game Library). The application renders multiple 3D models, provides basic user interaction, and incorporates camera manipulation to navigate the scene. The primary goal is to showcase an understanding of rendering pipelines, object manipulation, and user interaction within a computer graphics context.
+---
 
 ## Features
 
@@ -31,6 +32,7 @@ This project demonstrates the development of a 3D graphics application using **M
 - **User Interaction.**
   - Integrates mouse and keyboard inputs for interaction.
   - Exit the application using the **ESC** key.
+---
 
 ## Technical Implementation
 
@@ -47,6 +49,7 @@ The `Main` class serves as the entry point of the application and orchestrates t
 
 - **Input Handling.**
   - Responds to key and mouse inputs for interaction.
+---
 
 ### Dependencies
 
@@ -61,6 +64,7 @@ The `Main` class serves as the entry point of the application and orchestrates t
   - `GameObject`: Encapsulates properties and behavior of 3D objects.
   - `Input`: Manages keyboard and mouse input states.
   - `ModelLoader`: Loads 3D models and textures from file.
+---
 
 ## Challenges Faced
 
@@ -72,6 +76,7 @@ The `Main` class serves as the entry point of the application and orchestrates t
 
 - **Camera Implementation.**
   - Balancing intuitive controls with flexibility required iterative adjustments.
+---
 
 ## Potential Improvements
 
@@ -86,10 +91,12 @@ The `Main` class serves as the entry point of the application and orchestrates t
 
 - **Optimization.**
   - Optimize rendering for better performance on lower-end systems.
+---
 
 ## Conclusion
 
 This project successfully demonstrates the application of computer graphics concepts, including model rendering, camera manipulation, and user interaction. It serves as a foundation for more advanced graphics applications and highlights the potential of OpenGL in real-time rendering.
+---
 
 ## How to Run
 
@@ -103,6 +110,8 @@ This project successfully demonstrates the application of computer graphics conc
    - **M**: Toggle multi-object mode.
    - **ESC**: Exit the application.
 
+---
+
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).

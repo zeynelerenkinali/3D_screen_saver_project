@@ -1,8 +1,8 @@
 # Computer Graphics Project - Modern OpenGL with LWJGL
 
 This project demonstrates the development of a 3D graphics application using **Modern OpenGL** and **LWJGL** (Lightweight Java Game Library). The application renders multiple 3D models, provides basic user interaction, and incorporates camera manipulation to navigate the scene. The primary goal is to showcase an understanding of rendering pipelines, object manipulation, and user interaction within a computer graphics context.
----
 
+---
 ## Features
 
 - **Window Management.**
@@ -96,8 +96,8 @@ The `Main` class serves as the entry point of the application and orchestrates t
 ## Conclusion
 
 This project successfully demonstrates the application of computer graphics concepts, including model rendering, camera manipulation, and user interaction. It serves as a foundation for more advanced graphics applications and highlights the potential of OpenGL in real-time rendering.
----
 
+---
 ## How to Run
 
 1. Clone the repository.
